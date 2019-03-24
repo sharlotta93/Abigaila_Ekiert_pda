@@ -39,4 +39,33 @@ describe('calculator', function () {
     assert.strictEqual(calculator.runningTotal, expected);
   })
 
+  it('it can concatenate multiple number button clicks', function(){
+    calculator.numberClick(2);
+    calculator.numberClick(4);
+    const expected = 24;
+    assert.strictEqual(calculator.runningTotal, expected);
+  })
+
+  it('it can chain multiple operations together', function(){
+    calculator.numberClick(4);
+    calculator.operatorClick("+");
+    calculator.numberClick(4);
+    calculator.operatorClick("-");
+    calculator.numberClick(1);
+    calculator.operatorClick("=");
+    const expected = 7;
+    assert.strictEqual(calculator.runningTotal, expected);
+  })
+
+  it('it can clear the running total without affecting the calculation', function(){
+    calculator.numberClick(9);
+    calculator.operatorClick("/");
+    calculator.numberClick(3);
+    calculator.operatorClick("+");
+    calculator.numberClick(4);
+    calculator.clearClick();
+    const expected = 3;
+    assert.strictEqual(calculator.previousTotal, expected);
+  })
+
 });
