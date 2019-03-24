@@ -20,7 +20,11 @@ Calculator.prototype = {
   },
 
   divide: function(number){
+    if (number !== 0) {
     this.runningTotal = parseFloat(this.previousTotal) / parseFloat(number);
+  } else {
+    this.runningTotal = "not a number";
+  }
   },
 
   numberClick: function(number) {
